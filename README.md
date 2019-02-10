@@ -4,7 +4,7 @@
 Here's the integration of modules of my group. The storage.py is 
 written by me, and the alert_system.py is also basically written
 by me since the original one cannot work. Others are copy from my 
-teammates' repo, you could see detail in the first comment inside
+teammates' repo, you could details are provided in the first comment inside
 those files.
 
 ## Usage
