@@ -8,7 +8,8 @@ teammates' repo, details are provided in the first comment inside
 those files.
 
 ## Usage
-First, please make sure you have all files in the same directory and read requirements.txt please.
+First, please make sure you have all files in the same directory and mongodb is running.
+Also, read requirements.txt please.
 
 Then you could just run main.py, every module is used
 inside it, or just import any module you want into your
