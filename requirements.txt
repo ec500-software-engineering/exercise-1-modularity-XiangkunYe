@@ -1,1 +1,2 @@
 The only library required is pymongo, you could use pip or pip3 to download it.
+Also you will need to download MongoDB and run it.
