@@ -22,5 +22,6 @@ print("\nLet's search a person with PatientID 1234 and in time 12:05:20pm-18/01/
 print(searchTime('1234', '12:05:20pm-18/01/2019'))
 print("\nLet's update this table to set pulse = 100: ")
 update('1234', '12:05:20pm-18/01/2019', 'pulse', '100')
-print(searchPerson('1234'))
+print(searchPerson('1234'), '\n')
+deletePerson('1234')
 deletePerson('1234')

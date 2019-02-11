@@ -18,16 +18,19 @@ def insert(PatientInfo, SensorData):
     in input.py from input module and insert them as a whole table into database.
     '''
 
-    PatientInfo = json.loads(PatientInfo)
-    SensorData = json.loads(SensorData)
-    dict = {}
-    for id in PatientInfo:
-        dict['PatientID'] = id
-        for k, v in PatientInfo[id].items():
-            dict[k] = v
-        for k, v in SensorData[id].items():
-            dict[k] = v
-    mycol.insert_one(dict)
+    try:
+        PatientInfo = json.loads(PatientInfo)
+        SensorData = json.loads(SensorData)
+        dict = {}
+        for id in PatientInfo:
+            dict['PatientID'] = id
+            for k, v in PatientInfo[id].items():
+                dict[k] = v
+            for k, v in SensorData[id].items():
+                dict[k] = v
+        mycol.insert_one(dict)
+    except:
+        print("It seems that some things went wrong with your input file, please check it.")
 
 def searchPerson(PatientID):
     '''
@@ -38,7 +41,10 @@ def searchPerson(PatientID):
     val = []
     for item in res:
         val.append(item)
-    return val
+    if val:
+        return val
+    else:
+        print("It seems that we don't have this person's data.")
 
 def searchTime(PatientID, Time):
     '''
@@ -49,21 +55,33 @@ def searchTime(PatientID, Time):
     val = []
     for item in res:
         val.append(item)
-    return val
+    if val:
+        return val
+    else:
+        print("It seems that we don't have this person's data in select time.")
 
 def deletePerson(PatientID):
     '''
     delete all tables for this person.
     '''
 
-    mycol.delete_many({'PatientID': PatientID})
+    res = mycol.delete_many({'PatientID': PatientID})
+    if res.deleted_count:
+        print("Successfully delete it!")
+    else:
+        print("It seems that there's no such table to delete.")
+
 
 def deleteTime(PatientID, Time):
     '''
     delete a specific table according to ID and Time.
     '''
 
-    mycol.delete_many({'PatientID': PatientID, 'time': Time})
+    res = mycol.delete_many({'PatientID': PatientID, 'time': Time})
+    if res.deleted_count:
+        print("Successfully delete it!")
+    else:
+        print("It seems that there's no such table to delete.")
 
 def update(PatientID, Time, Item, Value):
     '''
@@ -72,4 +90,8 @@ def update(PatientID, Time, Item, Value):
 
     query = {'PatientID': PatientID, 'time': Time}
     new = {'$set': {Item: Value}}
-    mycol.update_one(query, new)
+    res = mycol.update_one(query, new)
+    if res.modified_count:
+        print("Successfully update it!")
+    else:
+        print("It seems that there's no such table to update.")
