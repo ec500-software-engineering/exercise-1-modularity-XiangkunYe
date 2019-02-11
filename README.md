@@ -1,9 +1,9 @@
 # exercise-1-modularity-XiangkunYe
 
 ## Introduction
-Here's the integration of modules of my group. The storage.py is 
+Here's the integration of modules of my group. The storage.py is
 written by me, and the alert_system.py is also basically written
-by me since the original one cannot work. Others are copy from my 
+by me since the original one cannot work. Others are copied from my
 teammates' repo, details are provided in the first comment inside
 those files.
 

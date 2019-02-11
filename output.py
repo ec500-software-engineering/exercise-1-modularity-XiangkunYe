@@ -1,9 +1,10 @@
 '''
-Copied from https://github.com/alexlin0625/EC500_Spring19/tree/output_module with a little modification.
+Copied from https://github.com/ec500-software-engineering/exercise-1-modularity-qzhizhou
 '''
 
 import json
 import os
+
 
 class patient(object):
     def __init__(self):
@@ -27,8 +28,8 @@ class patient(object):
     def get_temp_id(self, temp_id):
         return temp_id
 
-    def recieveFromAlert(self, data):
-        data = json.loads(data)
+    def recieveFromAlert(self, rawJson):
+        data = json.loads(rawJson)
         self.msg = data["alert_message"]
         self.bp_id = data["bloodPressure"]
         self.pulse_id = data["pulse"]
@@ -48,15 +49,31 @@ class patient(object):
             data = self.temp_id
         self.send_select_to_UI(req, data)
 
-    def send_alert_to_UI(self):
-        send_data = json.dumps({
-            'alert_message': self.msg,
-            'bloodPressure': self.bp_id,
-            'pulse': self.pulse_id,
-            'bloodOx': self.temp_id
-        })
-        print(send_data)
-        return send_data
+    def send_alert_to_UI(self, patient_info):
+        patient_data = json.loads(patient_info)
+        for id in patient_data:
+            info = patient_data[id]
+            print('===============================')
+            print('Welcome to Health Monitoring System')
+            print('===============================')
+            print('PatientID: ', id)
+            print('Name: ', info['name'])
+            print('Gender: ', info['gender'])
+            print('Age: ', info['age'])
+            print('===============================')
+            print('alert_message: ', self.msg)
+            print('pulse: ', self.pulse_id)
+            print('bloodPressure: ', self.bp_id)
+            print('bloodOx: ', self.temp_id)
+            print('===============================')
+        # send_data = json.dumps({
+        #     'alert_message': self.msg,
+        #     'bloodPressure': self.bp_id,
+        #     'pulse': self.pulse_id,
+        #     'bloodOx': self.temp_id
+        # })
+        # # print(send_data)
+        # return send_data
 
     def send_select_to_UI(self, req, data):
         send_data = json.dumps({
@@ -70,8 +87,7 @@ def main():
     patient_1 = patient()
     json_dir = os.getcwd()
     with open(json_dir + '/patient.json', 'r') as rawJson:
-        data = json.load(rawJson)
-        patient_1.recieveFromAlert(data)
+        patient_1.recieveFromAlert(rawJson)
         patient_1.send_alert_to_UI()
         rawJson.close()
 

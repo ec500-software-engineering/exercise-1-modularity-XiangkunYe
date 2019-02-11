@@ -16,16 +16,9 @@ Created on Wed Feb  6 09:29:32 2019
 """
 import json
 
-
-def sendToUI(msg,j):
-    ui_dict={"alert_message":msg,"bloodPressure":j["bloodPressure"],"pulse":j["pulse"],"bloodOx":j["bloodOx"]}
-    ui_json=json.dumps(ui_dict)
-    return ui_json
-    #call_output_method
-
-def alertCheck(j_o):
-    j=json.loads(j_o)
-    alert_message=""
+def alertCheck(PatientInfo, SensorData):
+    j=json.loads(SensorData)
+    alert_message = ""
     for value in j.values():
         val = value
     if(val["bloodPressure"]<val["pressureRange"]["lower"]):
@@ -40,4 +33,6 @@ def alertCheck(j_o):
         alert_message+="BloodOx is Too low, "
     elif(val["bloodOx"]>val["oxRange"]["upper"]):
         alert_message+="BloodOx is Too high, "
-    return sendToUI(alert_message, val)
+    ui_dict={"alert_message":alert_message, "bloodPressure":val["bloodPressure"], "pulse":val["pulse"], "bloodOx":val["bloodOx"]}
+    ui_json=json.dumps(ui_dict)
+    return ui_json, PatientInfo
