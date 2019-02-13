@@ -11,6 +11,5 @@ those files.
 First, please make sure you have all files in the same directory and mongodb is running.
 Also, read requirements.txt please.
 
-Then you could just run main.py, every module is used
-inside it, or just import any module you want into your
-own file and use as API.
+For normal use, please run **main.py**, every module is used
+inside it. If you want to try multithread, please run **multithread_main.py**.
