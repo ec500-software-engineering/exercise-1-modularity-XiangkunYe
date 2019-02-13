@@ -18,21 +18,23 @@ import json
 
 def alertCheck(PatientInfo, SensorData):
     j=json.loads(SensorData)
-    alert_message = ""
+    alert_message = ''
     for value in j.values():
         val = value
-    if(val["bloodPressure"]<val["pressureRange"]["lower"]):
+    if(int(val["bloodPressure"])<int(val["pressureRange"]["lower"])):
         alert_message+="BloodPressure is Too low, "
-    elif(val["bloodPressure"]>val["pressureRange"]["upper"]):
+    elif(int(val["bloodPressure"])>int(val["pressureRange"]["upper"])):
         alert_message="BloodPressure is Too high, "
-    if(val["pulse"]<val["pulseRange"]["lower"]):
+    if(int(val["pulse"])<int(val["pulseRange"]["lower"])):
         alert_message+="Pulse is Too low, "
-    elif(val["pulse"]>val["pulseRange"]["upper"]):
+    elif(int(val["pulse"])>int(val["pulseRange"]["upper"])):
         alert_message+="Pulse is Too high, "
-    if(val["bloodOx"]<val["oxRange"]["lower"]):
+    if(int(val["bloodOx"])<int(val["oxRange"]["lower"])):
         alert_message+="BloodOx is Too low, "
-    elif(val["bloodOx"]>val["oxRange"]["upper"]):
+    elif(int(val["bloodOx"])>int(val["oxRange"]["upper"])):
         alert_message+="BloodOx is Too high, "
+    if alert_message == '':
+        alert_message = 'Normal'
     ui_dict={"alert_message":alert_message, "bloodPressure":val["bloodPressure"], "pulse":val["pulse"], "bloodOx":val["bloodOx"]}
     ui_json=json.dumps(ui_dict)
     return ui_json, PatientInfo
