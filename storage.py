@@ -29,7 +29,7 @@ def insert(PatientInfo, SensorData):
             for k, v in SensorData[id].items():
                 dict[k] = v
         mycol.insert_one(dict)
-    except:
+    except Exception:
         print("It seems that some things went wrong with your input file, please check it.")
 
 def searchPerson(PatientID):
