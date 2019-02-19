@@ -3,10 +3,10 @@ Created on 02/12/2019
 @author: Xiangkun Ye
 """
 
-from input_simulator import *
-from storage import *
-from alert_system import *
-from output import *
+from input_simulator import simulator
+from storage import insert
+from alert_system import alertCheck
+from output import patient
 import threading
 import time
 import random

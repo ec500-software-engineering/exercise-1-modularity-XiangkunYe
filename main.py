@@ -3,10 +3,10 @@ Created on 02/10/2019
 @author: Xiangkun Ye
 """
 
-from input import *
-from storage import *
-from alert_system import *
-from output import *
+from input import getPatientInfo, readSensorData
+from storage import insert, searchPerson, searchTime, update, deletePerson
+from alert_system import alertCheck
+from output import patient
 
 PatientInfo = getPatientInfo()
 SensorData = readSensorData()
