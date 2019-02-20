@@ -13,3 +13,12 @@ Also, read requirements.txt please.
 
 For normal use, please run **main.py**, every module is used
 inside it. If you want to try multithread, please run **multithread_main.py**.
+
+## System diagram
+![System diagram](https://github.com/ec500-software-engineering/exercise-1-modularity-XiangkunYe/blob/master/Health%20Monitor%20System%20design%20.png?raw=true)
+
+## Pros and Cons
+The first pro is out diagram and structure is quite simple
+The second pro is codes writen by me (storage and alert) are very clear and elegant
+
+Maybe there's a con that we don't have AI module.
