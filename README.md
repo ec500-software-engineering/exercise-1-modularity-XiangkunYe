@@ -19,6 +19,7 @@ inside it. If you want to try multithread, please run **multithread_main.py**.
 
 ## Pros and Cons
 The first pro is out diagram and structure is quite simple
+
 The second pro is codes writen by me (storage and alert) are very clear and elegant
 
 Maybe there's a con that we don't have AI module.
