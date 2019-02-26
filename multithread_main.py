@@ -21,6 +21,9 @@ def run(PatientInfo, SensorData):
 
 while True:
     PatientInfo, SensorData = simulator()
+    # Every time we receive a new data, we open a  new thread to deal with it
+    # Since it would end fast, I believe even a normal laptop can handle
+    # lots of concurrent input.
     t = threading.Thread(target=run, args=(PatientInfo, SensorData))
     t.start()
     time.sleep(random.randint(1, 5))
